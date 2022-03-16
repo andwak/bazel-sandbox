@@ -1,27 +1,24 @@
 FROM ubuntu:22.04
 
-RUN apt-get update
-
-RUN apt-get install curl -y
-RUN apt-get install git -y
-RUN apt-get install gpg -y
+# Install base tools
+RUN apt-get update && apt-get install -y \
+    curl \
+    git \
+    gpg
 
 # Install Bazel
-RUN curl -fsSL https://bazel.build/bazel-release.pub.gpg | gpg --dearmor > bazel.gpg
-RUN mv bazel.gpg /etc/apt/trusted.gpg.d/
-RUN echo "deb [arch=amd64] https://storage.googleapis.com/bazel-apt stable jdk1.8" | tee /etc/apt/sources.list.d/bazel.list
-
-RUN apt-get update
-RUN apt-get install bazel -y
+RUN curl -fsSL https://bazel.build/bazel-release.pub.gpg | gpg --dearmor > bazel.gpg && \
+    mv bazel.gpg /etc/apt/trusted.gpg.d/ && \
+    echo "deb [arch=amd64] https://storage.googleapis.com/bazel-apt stable jdk1.8" | tee /etc/apt/sources.list.d/bazel.list && \
+    apt-get update && apt-get install -y \
+    bazel
 
 # Install .Net SDK
-RUN curl -fsSL https://packages.microsoft.com/config/ubuntu/21.04/packages-microsoft-prod.deb -o packages-microsoft-prod.deb
-RUN dpkg -i packages-microsoft-prod.deb
-RUN rm packages-microsoft-prod.deb
-RUN apt-get update
-RUN apt-get install apt-transport-https -y
-RUN apt-get update 
-RUN apt-get install dotnet-sdk-6. -y
+RUN curl -fsSL https://packages.microsoft.com/config/ubuntu/21.04/packages-microsoft-prod.deb -o packages-microsoft-prod.deb && \
+    dpkg -i packages-microsoft-prod.deb && rm packages-microsoft-prod.deb && \
+    apt-get update && apt-get install -y \
+    apt-transport-https \
+    dotnet-sdk-6.
 
 # Start folder for working
 WORKDIR "/src"
