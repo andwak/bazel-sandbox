@@ -6,6 +6,8 @@ void WriteLine(const std::string& strOutput) {
 }
 
 int main(int argc, char** argv) {
+  WriteLine("\n");
   WriteLine("Hello World! C++!");
+  WriteLine("\n");
   return 0;
 }
