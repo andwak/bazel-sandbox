@@ -27,3 +27,11 @@ The application for Bazel C++ can be build in the following way
 ## Running the C++ Application
 
 `bazel run //...`
+
+# Aspects
+
+## Executing the Aspect
+
+`bazel clean`
+
+`bazel build //... --aspects //HelloWorldC++:FirstAspect.bzl%print_aspect`
