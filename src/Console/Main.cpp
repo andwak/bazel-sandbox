@@ -1,14 +1,10 @@
-#include <string>
-#include <iostream>
-
-void WriteLine(const std::string& strOutput) {
-  std::cout << strOutput;
-}
+#include "../Output/OutputWriter.h"
 
 int main(int argc, char** argv) {
-  WriteLine("\n");
-  WriteLine("Hello World! C++!");
-  WriteLine("\n");
-  WriteLine("\n");
+  OutputWriter writer;
+  writer.WriteLine("\n");
+  writer.WriteLine("Hello World! C++!");
+  writer.WriteLine("\n");
+  writer.WriteLine("\n");
   return 0;
 }

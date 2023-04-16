@@ -26,7 +26,9 @@ The application for Bazel C++ can be build in the following way
 
 ## Running the C++ Application
 
-`bazel run //...`
+The entry point of the application is a console application and this can be executed with the following command.
+
+`bazel run //Console:Main`
 
 # Aspects
 
@@ -34,4 +36,4 @@ The application for Bazel C++ can be build in the following way
 
 `bazel clean`
 
-`bazel build //... --aspects //HelloWorldC++:FirstAspect.bzl%print_aspect`
+`bazel build //... --aspects //Console:FirstAspect.bzl%print_aspect`
